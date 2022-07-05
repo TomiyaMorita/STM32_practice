@@ -158,7 +158,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  uint32_t value = 0;
+	  value = tmc2209_readInt(&TMC2209, TMC2209_FACTORY_CONF);
+	  printf("FACTORY_CONF: %ld\r\n", value);
 	  printf("Hello\r\n");
+	  printf("Goodbye\r\n");
 	  HAL_Delay(1000);
   }
   /* USER CODE END 3 */

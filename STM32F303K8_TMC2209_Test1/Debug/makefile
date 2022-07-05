@@ -62,8 +62,8 @@ all: main-build
 main-build: STM32F303K8_TMC2209_Test1.elf secondary-outputs
 
 # Tool invocations
-STM32F303K8_TMC2209_Test1.elf STM32F303K8_TMC2209_Test1.map: $(OBJS) $(USER_OBJS) /Users/rui/Documents/GitHub/STM32_practice/STM32F303K8_TMC2209_Test1/STM32F303K8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "STM32F303K8_TMC2209_Test1.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/rui/Documents/GitHub/STM32_practice/STM32F303K8_TMC2209_Test1/STM32F303K8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F303K8_TMC2209_Test1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+STM32F303K8_TMC2209_Test1.elf STM32F303K8_TMC2209_Test1.map: $(OBJS) $(USER_OBJS) /Users/moritatomiya/Documents/GitHub/STM32_practice/STM32F303K8_TMC2209_Test1/STM32F303K8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "STM32F303K8_TMC2209_Test1.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/moritatomiya/Documents/GitHub/STM32_practice/STM32F303K8_TMC2209_Test1/STM32F303K8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F303K8_TMC2209_Test1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

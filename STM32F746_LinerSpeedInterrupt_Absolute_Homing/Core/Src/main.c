@@ -173,7 +173,7 @@ void prepareAbsoluteMovement(int whichMotor, int absolute_steps){
 	if(steps == 0){
 		return;
 	}
-	si->dirFunc( steps < 0 ? 1 : 0);
+	si->dirFunc(steps < 0 ? 1 : 0);
 	si->dir = steps > 0 ? 1:-1;
 	si->totalSteps = abs(steps);
 	resetStepper(si);
@@ -208,7 +208,7 @@ void setNextInterruptInterval(){
 
 void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim){
 	//HAL_TIM_OC_Stop_IT(&htim1, TIM_CHANNEL_1);
-	unsigned int tmpCtr = __HAL_TIM_GET_COMPARE(&htim1, TIM_CHANNEL_1);
+	unsigned int tmpCtr = __HAL_TIM_GET_COMPARE(&htim1, TIM_CHANNEL_1);		//現在のコンペアの値を入れている
 	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 65500);
 
 
@@ -401,6 +401,7 @@ void SystemClock_Config(void)
   */
   __HAL_RCC_PWR_CLK_ENABLE();
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
+
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
@@ -417,12 +418,14 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+
   /** Activate the Over-Drive mode
   */
   if (HAL_PWREx_EnableOverDrive() != HAL_OK)
   {
     Error_Handler();
   }
+
   /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
@@ -459,7 +462,7 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 96-1;
+  htim1.Init.Prescaler = 192-1;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim1.Init.Period = 65535;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -586,5 +589,3 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
